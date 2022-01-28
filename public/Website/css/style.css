@@ -1,0 +1,279 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Raleway', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.font-16{
+    font-size: 16px!important;
+}
+.font-20{
+    font-size: 20px!important;
+}
+.font-14{
+    font-size: 14px!important;
+}
+.font-11{
+    font-size: 11px!important;
+}
+.nav-logo {
+    margin-top: -40px;
+    width: 120px;
+    margin-left: 30px;
+    height: auto;
+}
+
+.a-class{
+    text-decoration: none;
+    color: #594e43;
+}
+
+.top-navbar{
+    padding-top: 12px;
+    padding-bottom: 0px;
+}
+.display-inline span{
+    display: inline-block !important;
+}
+
+.navbar{
+    padding-top: 0px!important;
+}
+
+.svg-img{
+    width: 20px;
+    height: 15px;
+    fill:aquamarine;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* remove the gap so it doesn't close*/
+ }
+.owl-carousel .item img{
+    width: 100%;
+    height: auto;
+}
+.row{
+    margin-right: 0px!important;
+    margin-left: 0px!important;
+}
+.owl-nav{
+    display: none;
+  }
+
+  .owl-theme .owl-controls .owl-page span {
+    margin-top : -10px!important;
+}
+
+.carousal-item-banner{
+    width: 300px;
+    top: 10%;
+    left: 40%;
+    position: absolute;
+}
+  
+.goodness-section{ 
+    background: #f3c71e;
+    margin-top: 60px;
+    width: 100%;
+    position: relative;
+    display: table;
+}
+  .mirchi{
+    background: url(../images/parallax_obj_01.png) no-repeat;
+    margin: 0;
+    height: 388px;
+    width: 240px;
+    position: absolute;
+    top: -300px;
+    left: -4%;
+    z-index: 8;
+  }
+
+  .loung {   
+  background: url(../images/parallax_obj_12.png) no-repeat;
+  margin: 0;
+  height: 140px;
+  width: 106px;
+  position: absolute;
+  top: 0;
+  left: 2%;
+  z-index: 7;
+}
+
+.chana {   
+    background: url(../images/parallax_obj_03.png) no-repeat;
+    margin: 0;
+    height: 334px;
+    width: 226px;
+    position: absolute;
+    top: -200px;
+    right: 0%;
+    z-index: 8;
+  }
+
+  .goodness-section .middle-img{
+      width: 100%;
+      margin-top: -40px;
+      border-radius: 20px;
+  }
+
+  .vertical-center{
+    display: grid;
+    align-items: center;
+  }
+
+  .btn-half{
+      width: 50%;
+  }
+
+.product-section{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: url(../images/product_bg_pattern.jpg) repeat;
+}
+
+.product-section h2{
+    font-size: 1.5rem!important;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.product_title span {
+    background: #d92a0f url(../images/icons.png) -9px -90px no-repeat;
+    padding: 40px;
+    border-radius: 1000px;
+    display: inline-block;
+}
+
+.testimonial{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #faf6eb;
+}
+
+.testimonial h2{
+    font-size: 1.5rem!important;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.testimonial .card{
+    background-color: #faf6eb;
+    border: 1px solid #faf6eb;
+}
+
+.testimonial .card-title{
+    color: #594e43;
+    font-weight: bold;
+}
+
+.testimonial-img{
+    margin-top: 30px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#btn-back-to-top {
+    position: relative;
+    bottom: 0px;
+    left : 45%;
+    display: none;
+    z-index: 99;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+
+footer{
+    background: url(../images/all_footer.jpg) center center no-repeat;
+    margin: 0 auto;
+    height: 360px;
+    width: 100%;
+  }
+
+  .contact-us{
+    background: url(../images/contact_parallex_bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0px;
+    height: auto;
+    width: 100%;
+    margin-top: 185px;
+    margin-bottom: 60px;
+  }
+
+  .contact-us .page-title h3:before {
+    background: #d40000 url(../images/icons.png) -1107px -99px no-repeat;
+    width: 80px;
+    height: 78px;
+    display: table;
+    margin: 0 auto ;
+    border-radius: 1000px;
+    content: "";
+}
+
+  .page-title{
+    width: 86%;
+    min-height: 130px;
+    max-height: 400px;
+    margin: 0 auto;
+    position: relative;
+    bottom: 60px;
+    background: url(../images/recipe_mast_bg.jpg) repeat-x bottom left;
+  }
+
+  .contact-us-sub-section{
+    margin-top: 50px;
+    margin-bottom: 50px;
+      padding: 40px 10px;
+  }
+
+  .contact-image-section{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 40px 30px;
+  }
+
+  .privacy .first-ol{
+      padding-left: 0px;
+  }
+  .border-bottom{
+      border-bottom: 1px solid #594e43;
+  }
+ 
+/*****************
+*********   Media Query start *******
+**********/
+
+@media screen and (max-width: 480px) {
+    .mirchi{
+        display: none;
+    }
+    .loung{
+        display: none;
+    }
+    .chana{
+        display: none;
+    }
+    .carousal-item-banner{
+        width: 150px;
+        top: 10%;
+        left: 10%;
+        position: absolute;
+    }
+  }
+
+
+  
