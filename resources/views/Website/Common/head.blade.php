@@ -17,6 +17,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600;700&family=Roboto:wght@500&display=swap" rel="stylesheet">
     <title>Simple Goodness</title>
     @toastr_css
     @toastr_js
@@ -53,8 +56,8 @@
                         Herbs & Spices
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Products</a>
-                      <a class="dropdown-item" href="#">Other Masala</a>
+                      <a class="dropdown-item" href="{{url('/shop')}}">Products</a>
+                      <a class="dropdown-item" href="{{url('/')}}">Other Masala</a>
                     </div>
                   </li>
                 
@@ -85,6 +88,9 @@
                     <a class="nav-link font-weight-bol" href="{{url('/contacts')}}">Contact</a>
                 </li>
                 @auth
+                    <li class="nav-item notification1">
+                      <a class="nav-link font-weight-bol" href="{{url('My-Profile')}}" title="My Cart"><i class="far fa-user"></i></a>
+                    </li>                
                       <li class="nav-item notification1">
                         <a class="nav-link font-weight-bol" href="{{url('/my-cart')}}" title="My Cart"><i class="fas fa-shopping-cart"></i> <span>3</span></a>
                       </li>
