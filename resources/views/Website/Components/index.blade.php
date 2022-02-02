@@ -5,7 +5,7 @@
             <div class="item">
                 <div class="carousal-item-banner  text-center">
                     <img src="{{asset('Website/images/banner/item1.png')}}" class="w-100" alt="">
-                   <a href="#" class="animate__animated animate__delay-5s animate__fadeInUp mt-5"><button class="btn btn-success">View Details</button></a>  
+                   <a href="#" class="animate__animated animate__delay-2s animate__fadeInUp mt-5"><button class="btn btn-success">View Details</button></a>  
                 </div>
                 <img src="{{asset('Website/images/banner/slider01.jpg')}}" class="w-100" alt="">
             </div>

@@ -79,11 +79,30 @@
                     <a class="nav-link font-weight-bol" href="#">Legumes</a>
                   </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bol" href="#">About</a>
+                    <a class="nav-link font-weight-bol" href="{{url('/about')}}">About</a>
                  </li>
                 <li class="nav-item">
                     <a class="nav-link font-weight-bol" href="{{url('/contacts')}}">Contact</a>
                 </li>
+                @auth
+                      <li class="nav-item notification1">
+                        <a class="nav-link font-weight-bol" href="{{url('/my-cart')}}" title="My Cart"><i class="fas fa-shopping-cart"></i> <span>3</span></a>
+                      </li>
+                      <li class="nav-item notification2">
+                        <a class="nav-link font-weight-bol" href="{{url('/wishlist')}}" title="Wishlist"><i class="fas fa-heart"></i> <span>2</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link font-weight-bol" href="{{url('/logout')}}" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+                    </li>
+                @endauth
+                @guest 
+                    <li class="nav-item notification3">
+                      <a class="nav-link font-weight-bol" href="{{url('/my-cart')}}" title="My Cart"><i class="fas fa-shopping-cart"></i> <span>3</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link font-weight-bol" href="{{url('/Web-login')}}" title="login"><i class="fas fa-sign-in-alt"></i></a>
+                  </li>
+                @endguest
               </ul>
             </div>
           </nav>

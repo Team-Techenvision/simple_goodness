@@ -32,6 +32,10 @@ html {
     color: #594e43;
 }
 
+.no-ul{
+    list-style: none;
+}
+
 .top-navbar{
     padding-top: 12px;
     padding-bottom: 0px;
@@ -224,6 +228,48 @@ footer{
     content: "";
 }
 
+.common-header{
+    background: url(../images/contact_parallex_bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0px;
+    height: auto;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 60px;
+  }
+
+  .common-header .page-title h3{
+    padding-top: 50px!important;
+  }
+
+
+
+
+.about-us{
+    background: url(../images/contact_parallex_bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0px;
+    height: auto;
+    width: 100%;
+    margin-top: 185px;
+    margin-bottom: 60px;
+  }
+
+.about-us .page-title h3:before {
+    background: #f3c71e url(../images/icons.png) -638px -98px no-repeat;
+    width: 80px;
+    height: 78px;
+    display: table;
+    margin: 0 auto ;
+    border-radius: 1000px;
+    content: "";
+}
+
+
   .page-title{
     width: 86%;
     min-height: 130px;
@@ -252,6 +298,133 @@ footer{
   .border-bottom{
       border-bottom: 1px solid #594e43;
   }
+
+  .page-middle-section{
+      padding-top: 50px;
+      padding-bottom: 50px;
+  }
+
+  .notification1 .fa-shopping-cart{
+      color: rgb(22 48 24);
+  }
+
+  .notification2 .fa-heart{
+    color: rgb(22 48 24);
+}
+
+.notification3 .fa-shopping-cart{
+    color: rgb(22 48 24);
+}
+
+  .notification1 span {
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    color: #fff;
+    background: #ef4836;
+    display: block;
+    position: absolute;
+    right: 80px;
+    top: 20px;
+}
+
+.notification2 span {
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    color: #fff;
+    background: #ef4836;
+    display: block;
+    position: absolute;
+    right: 45px;
+    top: 20px;   
+}
+
+.notification3 span {
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    color: #fff;
+    background: #ef4836;
+    display: block;
+    position: absolute;
+    right: 45px;
+    top: 20px;   
+}
+
+.cart-img{
+    width: 100px;
+    height: 100px;
+}
+
+
+.quantity {
+    display: inline-block; }
+   
+   .quantity .input-text.qty {
+    width: 35px;
+    height: 39px;
+    padding: 0 5px;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #efefef;
+   }
+   
+   .quantity.buttons_added {
+    text-align: left;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: top; }
+   
+   .quantity.buttons_added input {
+    display: inline-block;
+    margin: 0;
+    vertical-align: top;
+    box-shadow: none;
+   }
+   
+   .quantity.buttons_added .minus,
+   .quantity.buttons_added .plus {
+    padding: 7px 10px 8px;
+    height: 41px;
+    background-color: #ffffff;
+    border: 1px solid #efefef;
+    cursor:pointer;}
+   
+   .quantity.buttons_added .minus {
+    border-right: 0; }
+   
+   .quantity.buttons_added .plus {
+    border-left: 0; }
+   
+   .quantity.buttons_added .minus:hover,
+   .quantity.buttons_added .plus:hover {
+    background: #eeeeee; }
+   
+   .quantity input::-webkit-outer-spin-button,
+   .quantity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0; }
+    
+    .quantity.buttons_added .minus:focus,
+   .quantity.buttons_added .plus:focus {
+    outline: none; }
+    
+
+    .bb-1{
+        border-bottom: 1px solid #000;
+        margin-bottom: 20px;
+    }
  
 /*****************
 *********   Media Query start *******
@@ -272,6 +445,15 @@ footer{
         top: 10%;
         left: 10%;
         position: absolute;
+    }
+    .top-navbar{
+        display: none;
+    }
+    .nav-logo {
+        margin-top: 0px;
+        width: 80px;
+        margin-left: 30px;
+        height: auto;
     }
   }
 

@@ -22,14 +22,15 @@ Route::get('/Web-login', 'Website\WebsiteController@login')->name('Web-login');
 Route::get('/Web-register', 'Website\WebsiteController@registration');
 Route::post('/Register-submit', 'Website\WebsiteController@register_submit');
 Route::post('Login-submit', 'Website\WebsiteController@login_submit');
-Route::get('/shop', 'Website\WebsiteController@index');
 Route::get('/categories', 'Website\WebsiteController@categories');
 Route::get('/blog', 'Website\WebsiteController@blog_Page');
 Route::get('/contacts', 'Website\WebsiteController@contacts');
+
 Route::post('/submit-contact-us', 'Website\WebsiteController@contacts_submit');
 
 Route::get('/privacy-policy', 'Website\WebsiteController@privacy');
 
+Route::get('/shop', 'Website\ProductController@shop');
 
 Route::get('/my-cart', 'Website\WebsiteController@cart_page');
 Route::get('/about', 'Website\WebsiteController@about_page');

@@ -71,7 +71,8 @@ class AdminController extends Controller
                 $image = 'images/banner/'.$filename;
                 Banner::where('id',$req->banner_id)->update([
                     'banner_name' => $req->banner_name,  
-                    'banner_image' => $image,
+                    'banner_image' => $image,                    
+                    'banner_link' => $req->banner_link,
                     'banner_title' => $req->banner_title,
                     'description' => $req->description,
                     'status' => $req->status,
@@ -80,6 +81,7 @@ class AdminController extends Controller
                 Banner::where('id',$req->banner_id)->update([
                     'banner_name' => $req->banner_name,  
                     'banner_title' => $req->banner_title,
+                    'banner_link' => $req->banner_link,
                     'description' => $req->description,
                     'status' => $req->status,
                 ]);
@@ -103,6 +105,7 @@ class AdminController extends Controller
                 $data = new Banner();
                 $data->banner_name = $req->banner_name;  
                 $data->banner_title = $req->banner_title;
+                $data->banner_link = $req->banner_link;
                 $data->description = $req->description;  
                 $data->banner_image  = $image;
                 $data->status = $req->status;

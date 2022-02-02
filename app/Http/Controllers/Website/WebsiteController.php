@@ -301,7 +301,6 @@ class WebsiteController extends Controller
     public function cart_page(){   
         // return 'hello';
         $data['flag'] = 7; 
-
         $session = Session::getId();
         // dd($session);
         $r = DB::table('temp_carts')->where('session_id',$session)->select('product_id','attribute_id')->get();

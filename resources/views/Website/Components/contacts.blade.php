@@ -6,8 +6,7 @@
                 <div class="page-title">
                     <h3 class="text-center py-3">Contact Us</h3>
                 </div>
-            </div>
-           
+            </div>           
         </div>
     </div>
 </section>

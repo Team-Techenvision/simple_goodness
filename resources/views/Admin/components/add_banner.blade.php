@@ -17,6 +17,13 @@
                     </div>  
 
                     <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Banner Link <small class="text-danger">*</small></label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="banner_link"  placeholder="Enter Banner link " required/>
+                        </div>
+                    </div> 
+
+                    <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Banner Title</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="banner_title"  placeholder="Enter Title" />
