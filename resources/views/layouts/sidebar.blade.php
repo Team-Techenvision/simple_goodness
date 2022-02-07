@@ -45,6 +45,7 @@
                         {{-- <li><a href="{{url('view-plans')}}">View Plans</a></li> --}}
                         {{-- <li><a href="{{url('view-about-us')}}">About Us</a></li> --}}
                         <li><a href="{{url('view-testimonial')}}">Testimonial</a></li>
+                        <li><a href="{{url('view-recipes')}}">View Recipes</a></li>
                         {{-- <li><a href="{{url('view-social-media')}}">Social Media Link</a></li> --}}
                         {{-- <li><a href="{{url('view-basic-info')}}">Basic Info</a></li> --}}
                         {{-- <li><a href="{{url('view-check-out-section')}}">Check This Out</a></li>

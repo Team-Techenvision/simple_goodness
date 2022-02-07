@@ -11,6 +11,7 @@ use App\Categories;
 use App\SubCategories;
 use App\Plans;
 use App\Blogs;
+use App\Recipes;
 use App\Banner;
 use App\Social_media;
 use App\Basic_info;
@@ -1139,6 +1140,107 @@ class AdminController extends Controller
         $data['who_we_are'] = Who_We_Are::where('id',$id)->first(); 
         // dd($data);
         return view('Admin/Webviews/manage_admin_user',$data);
+    }
+
+    public function view_recipes()
+    {
+        $data['flag'] = 36; 
+        $data['page_title'] = 'All Recipes';       
+       $data['recipes'] =  Recipes::with('user')->get();
+        // dd($data);
+        return view('Admin/Webviews/manage_admin_user',$data);
+    }
+
+    public function add_recipes()
+    {
+        $data['flag'] = 37; 
+        $data['page_title'] = 'Add Recipes';
+        $data['Categories'] = Categories::where('status',"1")->get();
+        // $data['tabs'] = Tabs::where('status',"1")->get(); 
+        return view('Admin/Webviews/manage_admin_user',$data);
+    }
+
+    public function submit_recipes(Request $req){            
+        if($req->recipes_id) { 
+            // dd($req);
+            $req->validate([
+                'title'=> 'required',
+                //'blog_image' => 'image|mimes:jpeg,jpg,png,gif,svg' 
+            ]);    
+            if($req->hasFile('new_recipe_image')) {
+                $file = $req->file('new_recipe_image');
+                $filename = 'recipe_image'.time().'.'.$req->new_recipe_image->extension();
+                $destinationPath = public_path('/images/recipes');
+                $file->move($destinationPath, $filename);
+                $image = 'images/recipes/'.$filename;
+                Recipes::where('id',$req->recipes_id)->update([
+                    'title' => $req->title, 
+                    'category_id' => $req->category_id,  
+                    'recipe_image' => $image,
+                    'content' => $req->content,
+                    'status' => $req->status,
+                    'user_id' => $req->user_id,
+                ]);
+            }else{
+                Recipes::where('id',$req->recipes_id)->update([
+                    'title' => $req->title, 
+                    'category_id' => $req->category_id, 
+                    'content' => $req->content,
+                    'user_id' => $req->user_id,
+                ]);
+            }
+            toastr()->success('Blog Successfully Updated!');
+            return redirect('view-recipes');
+        }else{  
+            // dd($req);
+            $req->validate([
+                'title'=> 'required',   
+                'content'=> 'required'
+            ]); 
+
+            if($req->hasFile('recipe_image')) {
+                $file = $req->file('recipe_image');
+                $filename = 'recipe_image'.time().'.'.$req->recipe_image->extension();
+                $destinationPath = public_path('/images/recipes');
+                $file->move($destinationPath, $filename);
+                $image = 'images/recipes/'.$filename;                
+                $data = new Recipes();
+                $data->title = $req->title; 
+                $data->category_id = $req->category_id;  
+                $data->content = $req->content;  
+                $data->recipe_image  = $image;
+                $data->status = $req->status;
+                $data->user_id = $req->user_id;
+                $data->save(); 
+            
+        }else{
+            $data = new Recipes();
+            $data->title = $req->title; 
+            $data->category_id = $req->category_id; 
+            $data->content = $req->content;  
+            $data->status = $req->status;
+            $data->user_id = $req->user_id;
+            $data->save(); 
+        } 
+         toastr()->success('Recipes Successfully Added!');
+        return redirect('view-recipes');
+        }
+    } 
+
+    public function edit_recipes($id){
+        $data['flag'] = 38; 
+        $data['page_title'] = 'Edit Recipes'; 
+        $data['Categories'] = Categories::where('status',"1")->get();
+        // Post::find(1)->comments;
+        $data['recipes'] = Recipes::with('user')->where('id', $id)->first(); 
+        // dd($data['blogs']);
+        return view('Admin/Webviews/manage_admin_user',$data);
+    }
+
+    public function delete_recipes($id){ 
+        $data['result']=Recipes::where('id',$id)->delete();
+        toastr()->error('Recipe Deleted !');
+        return redirect('view-recipes');
     }
     
 }

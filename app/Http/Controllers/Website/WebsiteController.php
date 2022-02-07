@@ -20,6 +20,7 @@ use App\UserAddress;
 use App\State;
 use App\OrderItem;
 use App\Order;
+use App\Recipes;
 use App\UserSubcription;
 use DB;
 use Carbon\carbon;
@@ -743,5 +744,18 @@ class WebsiteController extends Controller
             toastr()->success('Review submited  successfully!');
             return back();
         }
+    }
+
+    public function recipes_list(){
+        $data['flag'] = 23;
+        $data['recipes_list'] = Recipes::where('status',1)->paginate(6);
+        return view('Website/Webviews/manage_website_pages',$data);
+    }
+
+    public function recipeDetails($recipe_id){
+        $data['flag'] = 24;
+        $data['recipes'] = Recipes::where('id',$recipe_id)->first();	
+        // dd($data);
+        return view('Website/Webviews/manage_website_pages', $data); 
     }
 }

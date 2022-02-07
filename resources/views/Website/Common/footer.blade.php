@@ -122,5 +122,17 @@ String.prototype.getDecimals || (String.prototype.getDecimals = function() {
     b && "" !== b && "NaN" !== b || (b = 0), "" !== c && "NaN" !== c || (c = ""), "" !== d && "NaN" !== d || (d = 0), "any" !== e && "" !== e && void 0 !== e && "NaN" !== parseFloat(e) || (e = 1), jQuery(this).is(".plus") ? c && b >= c ? a.val(c) : a.val((b + parseFloat(e)).toFixed(e.getDecimals())) : d && b <= d ? a.val(d) : b > 0 && a.val((b - parseFloat(e)).toFixed(e.getDecimals())), a.trigger("change")
 });
 </script>
+<script>
+     $(window).scroll(function(){
+      if ($(this).scrollTop() > 125) {
+          $('.navbar').addClass('fixed-top');
+          $('.nav-logo').addClass('scroll-width');
+          
+      } else {
+          $('.navbar').removeClass('fixed-top');
+          $('.nav-logo').removeClass('scroll-width');
+      }
+  });
+</script>
 </body>
 </html>

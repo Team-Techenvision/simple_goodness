@@ -88,6 +88,12 @@
         @include('Admin.components/add_who_we_are')
     @elseif($flag == 35) 
         @include('Admin.components/edit_who_we_are')
+    @elseif($flag == 36) 
+        @include('Admin.components/recipes_list')
+    @elseif($flag == 37) 
+        @include('Admin.components/add_recipes')
+    @elseif($flag == 38) 
+        @include('Admin.components/edit_recipes')
     @endif
     </div>
                     <!-- end row -->

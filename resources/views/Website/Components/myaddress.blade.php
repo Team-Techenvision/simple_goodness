@@ -20,7 +20,7 @@
                         <ul>
                             <li> <a href="{{url('My-Profile')}}" class="a-class"> My Profile</a>  </li>
                             <li> <a href="{{url('My-Address')}}" class="a-class"> My Address</a>  </li>
-                            <li> <a href="{{url('My-Order')}}" class="a-class"> My Order</a>  </li>
+                            <li> <a href="#" class="a-class"> My Order</a>  </li>
                         </ul>    
                     </div> 
                     <div class="col-md-9">

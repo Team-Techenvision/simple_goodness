@@ -24,6 +24,9 @@ Route::post('/Register-submit', 'Website\WebsiteController@register_submit');
 Route::post('Login-submit', 'Website\WebsiteController@login_submit');
 Route::get('/categories', 'Website\WebsiteController@categories');
 Route::get('/blog', 'Website\WebsiteController@blog_Page');
+Route::get('recipe_list', 'Website\WebsiteController@recipes_list');
+Route::get('recipes/{recipe_id}', 'Website\WebsiteController@recipeDetails');
+
 Route::get('/contacts', 'Website\WebsiteController@contacts');
 
 Route::post('/submit-contact-us', 'Website\WebsiteController@contacts_submit');
@@ -135,6 +138,13 @@ Route::middleware(['auth', 'Admin'])->group(function () {
     Route::get('edit-blogs/{id}', 'Admin\AdminController@edit_blogs');
     Route::get('delete-blogs/{id}', 'Admin\AdminController@delete_blogs');
     Route::get('update-blogs/{id}/{status}', 'Admin\AdminController@update_tab_status');
+
+    Route::get('view-recipes', 'Admin\AdminController@view_recipes');
+    Route::get('add-recipes', 'Admin\AdminController@add_recipes');
+    Route::post('submit-recipes', 'Admin\AdminController@submit_recipes');
+    Route::get('edit-recipes/{id}', 'Admin\AdminController@edit_recipes');
+    Route::get('delete-recipes/{id}', 'Admin\AdminController@delete_recipes');
+    Route::get('update-recipes/{id}/{status}', 'Admin\AdminController@update_tab_status');
 
 
     Route::get('view-plans', 'Admin\AdminController@view_plans');

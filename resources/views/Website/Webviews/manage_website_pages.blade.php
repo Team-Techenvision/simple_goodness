@@ -54,6 +54,10 @@
                 @include('Website.Components/blogDetails') 
             @elseif($flag == 22) 
                 @include('Website.Components/privacy') 
+            @elseif($flag == 23) 
+                @include('Website.Components/recipes_list')
+            @elseif($flag == 24) 
+                @include('Website.Components/recipes_details')
             @endif
         </main>
 

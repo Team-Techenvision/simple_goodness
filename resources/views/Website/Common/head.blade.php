@@ -41,8 +41,8 @@
           </div>
       </section>
     <section class="navbar-top">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white mx-auto">
-            <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('Website/images/logo.png')}}" class="nav-logo" alt=""></a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white mx-auto ">
+            <a class="navbar-brand " href="{{url('/')}}"><img src="{{asset('Website/images/logo.png')}}" class="nav-logo" alt=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -59,27 +59,23 @@
                       <a class="dropdown-item" href="{{url('/shop')}}">Products</a>
                       <a class="dropdown-item" href="{{url('/')}}">Other Masala</a>
                     </div>
-                  </li>
-                
-                  <li class="nav-item dropdown">
+                  </li>                
+                  {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle font-weight-bol" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Pulses
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="#">Products</a>
                     </div>
-                  </li>    
+                  </li>     --}}
                 <li class="nav-item">
                     <a class="nav-link font-weight-bol" href="#">Oils</a>
-                </li>      
-                <li class="nav-item">
-                    <a class="nav-link font-weight-bol" href="#">Cereals</a>
-                </li>       
+                </li>            
                 <li class="nav-item">
                   <a class="nav-link font-weight-bol" href="#">Sweetners</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bol" href="#">Legumes</a>
+                    <a class="nav-link font-weight-bol" href="{{url('recipe_list')}}">Recipes</a>
                   </li>
                 <li class="nav-item">
                     <a class="nav-link font-weight-bol" href="{{url('/about')}}">About</a>
