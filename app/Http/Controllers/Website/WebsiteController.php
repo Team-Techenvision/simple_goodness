@@ -309,19 +309,18 @@ class WebsiteController extends Controller
         $data['flag'] = 7; 
         $session = Session::getId();
         // dd($session);
-        $r = DB::table('temp_carts')->where('session_id',$session)->select('product_id','attribute_id')->get();
+        $r = DB::table('temp_carts')->where('session_id',$session)->select('product_id')->get();
         // dd($r);
         if(Auth::check()){
-        $cart = DB::table('carts')->where('user_id',Auth::user()->id)->select('product_id','attribute_id')->get();
+        $cart = DB::table('carts')->where('user_id',Auth::user()->id)->select('product_id')->get();
         }
         $count = DB::table('temp_carts')->where('session_id',$session)->count();
 
         foreach ($r as $key => $r1) {
                 $data1[]=DB::table('products')
                 ->join('temp_carts', 'products.products_id', '=', 'temp_carts.product_id')
-                ->join('product_attributes', 'products.products_id', '=', 'product_attributes.products_id')
-                ->select('products.products_id','products.product_name','products.product_code','product_attributes.price','temp_carts.quantity','temp_carts.temp_carts_id','temp_carts.attribute_id')
-                ->where('product_attributes.id',$r1->attribute_id)
+                ->select('products.products_id','products.product_name','products.product_code','products.price','products.special_price','temp_carts.quantity','temp_carts.temp_carts_id')
+                ->where('products.products_id',$r1->product_id)
                 ->first();
             // dd($data1);
         }
@@ -330,9 +329,8 @@ class WebsiteController extends Controller
         foreach ($cart as $key => $r2) {
             $data1[]=DB::table('products')
             ->join('carts', 'products.products_id', '=', 'carts.product_id')
-            ->join('product_attributes', 'products.products_id', '=', 'product_attributes.products_id')
-            ->select('products.products_id','products.product_name','products.product_code','product_attributes.price','carts.quantity','carts.id','carts.user_id','carts.attribute_id')
-            ->where('product_attributes.id',$r2->attribute_id)
+            ->select('products.products_id','products.product_name','products.product_code','products.price','products.special_price','carts.quantity','carts.id','carts.user_id')
+            ->where('products.products_id',$r2->product_id)
             // ->where('carts.user_id', Auth::user()->id)
             ->first();
         // dd($data1);
