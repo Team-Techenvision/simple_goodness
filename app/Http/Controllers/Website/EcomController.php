@@ -17,14 +17,17 @@ class EcomController extends Controller
         $session = Session::getId();
         // dd($session);
 
-        if(Auth::check()){
+        $this->validate($req, [
+            'products_id' => 'required',
+            'quantity' => 'required'        
+        ]);
 
+        if(Auth::check()){
             $result1=DB::table('carts')->where('product_id',$req->products_id)->where('user_id',Auth::user()->id)->count();
 
             if($result1 == 0){
                 DB::table('carts')->insert([
                     'product_id'=>$req->products_id,
-                    'attribute_id'=>$req->attribute_id,
                     'user_id'=> Auth::user()->id,
                     'quantity'=>$req->quantity
                 ]);
@@ -36,7 +39,6 @@ class EcomController extends Controller
             if($result == 0){
                 DB::table('temp_carts')->insert([
                     'product_id'=>$req->products_id,
-                    'attribute_id'=>$req->attribute_id,
                     'session_id'=> $session,
                     'quantity'=>$req->quantity
                 ]);
@@ -68,7 +70,6 @@ class EcomController extends Controller
                 toastr()->error('Item already present into cart');
                
             }
-        
             return back();
         }
     }

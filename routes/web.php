@@ -40,9 +40,7 @@ Route::get('/about', 'Website\WebsiteController@about_page');
 Route::get('/faq', 'Website\WebsiteController@faq_page');
 Route::get('/product', 'Website\WebsiteController@product');
 Route::get('/post', 'Website\WebsiteController@post_page');
-Route::get('/checkout1', 'Website\WebsiteController@checkout1');
-Route::get('/checkout2', 'Website\WebsiteController@checkout2');
-Route::get('/checkout3', 'Website\WebsiteController@checkout3');
+
 Route::get('/ProductList/{Cat_id}', 'Website\WebsiteController@productList');
 Route::get('/ProductDetail/{product_id}', 'Website\WebsiteController@ProductDetail');
 Route::post('/add-to-cart', 'Website\EcomController@add_to_cart');
@@ -92,7 +90,7 @@ Route::group(['middleware' => 'auth', 'User'], function () {
     Route::get('download-user-invoice/{order_id}','Website\EcomController@downloadUserInvoice');
     Route::post('user-profile-submit','Website\WebsiteController@userProfileSubmit');
 
-    Route::get('add-wishlist/{products_id}/{attribute_id}/{user_id}','Website\WebsiteController@addtoWishlist');
+    Route::get('add-wishlist/{products_id}/{user_id}','Website\WebsiteController@addtoWishlist');
     Route::get('/wishlist', 'Website\WebsiteController@wishlist');
 	Route::get('remove-wishlist/{products_id}/','Website\EcomController@RemoveWishlist'); 
 

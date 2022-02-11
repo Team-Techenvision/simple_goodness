@@ -25,6 +25,7 @@
 </div>
 
 <div class="icon-load"></div>
-
+@toastr_js
+@toastr_render
 </body>
 </html>

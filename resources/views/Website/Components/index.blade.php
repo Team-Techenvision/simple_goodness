@@ -116,7 +116,7 @@
         </div>
     </section>
 
-    <section class="container-fluid testimonial">
+    {{-- <section class="container-fluid testimonial">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -155,6 +155,6 @@
                 </div>
             </div>           
         </div>
-    </section>
+    </section> --}}
 
    

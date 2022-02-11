@@ -20,10 +20,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600;700&family=Roboto:wght@500&display=swap" rel="stylesheet">
-    <title>Simple Goodness</title>
-    @toastr_css
-    @toastr_js
-    @toastr_render
+@toastr_css
+<title>Simple Goodness</title>
+  
   </head>
   <body>
       <section  class="top-navbar">
@@ -51,7 +50,10 @@
                 <li class="nav-item active">
                     <a class="nav-link font-weight-bol" href="{{url('/')}}">Home</a>
                  </li>
-                  <li class="nav-item dropdown ">
+                 <li class="nav-item">
+                    <a class="nav-link font-weight-bol" href="{{url('/ProductList')}}/1">Herbs & Spices</a>
+                </li>  
+                  {{-- <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle font-weight-bol" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Herbs & Spices
                     </a>
@@ -59,7 +61,7 @@
                       <a class="dropdown-item" href="{{url('/shop')}}">Products</a>
                       <a class="dropdown-item" href="{{url('/')}}">Other Masala</a>
                     </div>
-                  </li>                
+                  </li>                 --}}
                   {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle font-weight-bol" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Pulses
@@ -69,10 +71,13 @@
                     </div>
                   </li>     --}}
                 <li class="nav-item">
-                    <a class="nav-link font-weight-bol" href="#">Oils</a>
+                  <a class="nav-link font-weight-bol" href="{{url('/ProductList')}}/2">Pulces</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bol" href="{{url('/ProductList')}}/4">Oils</a>
                 </li>            
                 <li class="nav-item">
-                  <a class="nav-link font-weight-bol" href="#">Sweetners</a>
+                  <a class="nav-link font-weight-bol" href="{{url('/ProductList')}}/3">Sweetners</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link font-weight-bol" href="{{url('recipe_list')}}">Recipes</a>
@@ -80,6 +85,7 @@
                 <li class="nav-item">
                     <a class="nav-link font-weight-bol" href="{{url('/about')}}">About</a>
                  </li>
+                
                 <li class="nav-item">
                     <a class="nav-link font-weight-bol" href="{{url('/contacts')}}">Contact</a>
                 </li>
