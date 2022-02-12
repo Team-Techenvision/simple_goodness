@@ -503,6 +503,16 @@ footer{
     .product-card .card-title{
         font-size: 17px!important;
     }
+    .contact-icon{
+        color: #999;
+        font-size: 40px;
+        left: 20px;
+        top: 50%;
+    }
+    .contact-card{
+        box-sizing: border-box;
+        height: 120px;
+    }
 
  
 /*****************
@@ -574,7 +584,19 @@ footer{
         width: 100%;
         height: auto;
     }
- 
+    .contact-card{
+        box-sizing: border-box;
+        height: auto;
+        text-align: center;
+        
+    }
+    .contact-icon{
+        color: #999;
+        font-size: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        top: 50%;
+    }
   }
 
 

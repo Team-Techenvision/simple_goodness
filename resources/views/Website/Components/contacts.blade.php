@@ -24,7 +24,7 @@
 
 </section>
 
-<section class="container-fluid contact-image-section border-bottom">
+<section class="container-fluid contact-image-section">
     <div class="container">
         <div class="row">
             <div class="col-md-5 ">
@@ -48,5 +48,56 @@
                 <img class="w-100" src="{{asset('Website/images/contact_us.png')}}" alt="">
             </div>
         </div>
+    </div>
+</section>
+
+<section class="container-fluid contact-image-section border-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-columns">
+                    <div class="card contact-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 col-12 m-o">
+                                    <i class="fas fa-home contact-icon"></i>
+                                </div>
+                                <div class="col-md-9 col-12 m-o">
+                                    <h5 class="card-title">ADDRESS:</h5>
+                                    <p class="card-text ">#14, power house road, erode - 638001, TN</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card contact-card">
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-md-3 col-12 m-o">
+                                    <i class="fas fa-envelope contact-icon"></i>
+                                </div>
+                                <div class="col-md-9 col-12 m-o">
+                                    <h5 class="card-title">EMAIL ADDRESS:</h5>
+                                    <p class="card-text">info@Simplegoodness.in</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card contact-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 col-12 m-o">
+                                    <i class="fas fa-phone contact-icon"></i>
+                                </div>
+                                <div class="col-md-9 col-12 m-o">
+                                    <h5 class="card-title">PHONE NUMBER:</h5>
+                                    <p class="card-text">04242253633</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </section>

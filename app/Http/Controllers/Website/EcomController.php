@@ -51,7 +51,7 @@ class EcomController extends Controller
     }
 
 
-    public function add_to_cart_get(Request $request, $products_id, $attribute_id, $quantity){
+    public function add_to_cart_get(Request $request, $products_id, $quantity){
         // dd($products_id);
         if(Auth::check()){
 
@@ -60,7 +60,7 @@ class EcomController extends Controller
             if($result1 == 0){
                 DB::table('carts')->insert([
                     'product_id'=>$products_id,
-                    'attribute_id'=>$attribute_id,
+                    // 'attribute_id'=>$attribute_id,
                     'user_id'=> Auth::user()->id,
                     'quantity'=>$quantity
                 ]);
@@ -77,6 +77,19 @@ class EcomController extends Controller
     public function RemoveWishlist($products_id){
         DB::table('wishlists')->where('product_id', $products_id)->where('user_id',Auth::user()->id)->delete();
         toastr()->error('Product successfully deleted from Wishlist');
+        return back();
+    }
+
+    public function RemoveCart($products_id){
+        
+        if(Auth::check()){
+        DB::table('carts')->where('product_id', $products_id)->where('user_id',Auth::user()->id)->delete();
+        }else{
+            $session = Session::getId();
+            // dd($session);
+            DB::table('temp_carts')->where('product_id', $products_id)->where('session_id',$session)->delete();
+        }
+        toastr()->error('Product successfully deleted from Cart');
         return back();
     }
 

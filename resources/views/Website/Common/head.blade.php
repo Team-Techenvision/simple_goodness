@@ -8,6 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="{{asset('img/favicon.ico')}}" />
     <!-- Owl Stylesheets -->
     <link rel="stylesheet" href="{{ URL::asset('Website/css/style.css')}}">
     <link rel="stylesheet" href="{{ URL::asset('Website/css/owl.carousel.min.css')}}">
@@ -91,21 +92,32 @@
                 </li>
                 @auth
                     <li class="nav-item notification1">
-                      <a class="nav-link font-weight-bol" href="{{url('My-Profile')}}" title="My Cart"><i class="far fa-user"></i></a>
-                    </li>                
+                      <a class="nav-link font-weight-bol" href="{{url('My-Profile')}}" title="My Profile"><i class="far fa-user"></i></a>
+                    </li> 
+                    @php
+                            $cart_count = DB::table('carts')->where('user_id',Auth::id())->count();
+                    @endphp               
                       <li class="nav-item notification1">
-                        <a class="nav-link font-weight-bol" href="{{url('/my-cart')}}" title="My Cart"><i class="fas fa-shopping-cart"></i> <span>3</span></a>
+                        <a class="nav-link font-weight-bol" href="{{url('/my-cart')}}" title="My Cart"><i class="fas fa-shopping-cart"></i> <span>{{$cart_count}}</span></a>
                       </li>
+                        @php
+                                $cart_count = DB::table('wishlists')->where('user_id',Auth::id())->count();
+                        @endphp
                       <li class="nav-item notification2">
-                        <a class="nav-link font-weight-bol" href="{{url('/wishlist')}}" title="Wishlist"><i class="fas fa-heart"></i> <span>2</span></a>
+                        <a class="nav-link font-weight-bol" href="{{url('/wishlist')}}" title="Wishlist"><i class="fas fa-heart"></i> <span>{{$cart_count}}</span></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link font-weight-bol" href="{{url('/logout')}}" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
                     </li>
                 @endauth
                 @guest 
+
+                      @php
+                          $session = Session::getId();
+                          $cart_count = DB::table('temp_carts')->where('session_id',$session)->count();
+                      @endphp
                     <li class="nav-item notification3">
-                      <a class="nav-link font-weight-bol" href="{{url('/my-cart')}}" title="My Cart"><i class="fas fa-shopping-cart"></i> <span>3</span></a>
+                      <a class="nav-link font-weight-bol" href="{{url('/my-cart')}}" title="My Cart"><i class="fas fa-shopping-cart"></i> <span>{{$cart_count}}</span></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link font-weight-bol" href="{{url('/Web-login')}}" title="login"><i class="fas fa-sign-in-alt"></i></a>

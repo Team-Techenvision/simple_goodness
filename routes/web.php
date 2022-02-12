@@ -44,6 +44,7 @@ Route::get('/post', 'Website\WebsiteController@post_page');
 Route::get('/ProductList/{Cat_id}', 'Website\WebsiteController@productList');
 Route::get('/ProductDetail/{product_id}', 'Website\WebsiteController@ProductDetail');
 Route::post('/add-to-cart', 'Website\EcomController@add_to_cart');
+Route::get('remove-card/{products_id}/','Website\EcomController@RemoveCart'); 
 Route::post('/ProductList/{Cat_id}', 'Website\WebsiteController@productList_filter');
 Route::post('/remove-product','Website\WebsiteController@removeProduct'); 
 Route::post('/cart-update','Website\WebsiteController@cartUpdate'); 
@@ -94,10 +95,11 @@ Route::group(['middleware' => 'auth', 'User'], function () {
     Route::get('/wishlist', 'Website\WebsiteController@wishlist');
 	Route::get('remove-wishlist/{products_id}/','Website\EcomController@RemoveWishlist'); 
 
+
     Route::get('user-subcription','Website\WebsiteController@usersubcription');
     Route::post('user-plan-submit','Website\WebsiteController@user_plan_submit');
 
-    Route::get('cart-add/{products_id}/{attribute_id}/{quantity}','Website\EcomController@add_to_cart_get');
+    Route::get('cart-add/{products_id}/{quantity}','Website\EcomController@add_to_cart_get');
 
     Route::post('product-review-submit','Website\WebsiteController@addReviewComment');
 
