@@ -539,13 +539,13 @@ class WebsiteController extends Controller
     public function checkout(){   
         // return 'hello';
         $data['flag'] = 14; 
-                $cart = DB::table('carts')->where('user_id',Auth::user()->id)->select('product_id','attribute_id')->get();
+                $cart = DB::table('carts')->where('user_id',Auth::user()->id)->select('product_id')->get();
                 foreach ($cart as $key => $r2) {
                     $data1[]=DB::table('products')
                     ->join('carts', 'products.products_id', '=', 'carts.product_id')
-                    ->join('product_attributes', 'products.products_id', '=', 'product_attributes.products_id')
-                    ->select('products.products_id','products.product_name','products.product_code','product_attributes.price','carts.quantity','carts.id','carts.attribute_id')
-                    ->where('product_attributes.id',$r2->attribute_id)
+                    // ->join('product_attributes', 'products.products_id', '=', 'product_attributes.products_id')
+                    ->select('products.*','carts.quantity','carts.id')
+                    ->where('products.products_id',$r2->product_id)
                     ->first();
             }
             if(DB::table('carts')->where('user_id',Auth::user()->id)->count()>0) {
@@ -553,7 +553,7 @@ class WebsiteController extends Controller
             }else{
                 $data['result']='Please Choose To Continue Shopping';
             }
-             // dd($data);
+            //  dd($data);
             $data['useraddress']= UserAddress::where('user_id',Auth::user()->id)->get();
             // dd($data['useraddress']);
             $address_count =  $data['useraddress']->count();
@@ -579,7 +579,7 @@ class WebsiteController extends Controller
          $cart = DB::table('carts')->where('user_id',Auth::id())->count();
          $cartTotal = 0;
          if(!empty(Auth::id())) {
-             $cartTotal = DB::Select(DB::raw('SELECT sum(c.quantity*a.price) as cartTotal FROM `carts` as c inner join products as p on c.product_id = p.products_id inner join product_attributes as a on p.products_id = a.products_id WHERE c.user_id='.Auth::id()));
+             $cartTotal = DB::Select(DB::raw('SELECT sum(c.quantity*(IF(p.special_price is not null, p.special_price, p.price))) as cartTotal FROM `carts` as c inner join products as p on c.product_id = p.products_id  WHERE c.user_id='.Auth::id()));
          }
          $total1 = (!empty($cartTotal[0]->cartTotal)?$cartTotal[0]->cartTotal:0);
         //  dd($total1);
@@ -594,7 +594,7 @@ class WebsiteController extends Controller
                 $data=Cart::where('user_id',Auth::user()->id)->get();
                 $address = DB::table('user_addresses')->where('id',$req->address_id)->first();
                
-                $order_id = "Bloom".Auth::user()->id.time();
+                $order_id = "goodness".Auth::user()->id.time();
                 // dd($order_id);
                 $reg = new Order;
                 $reg->user_id = Auth::user()->id;
@@ -613,7 +613,7 @@ class WebsiteController extends Controller
                 $total_discount = 0;
                
                 foreach ($data as $r) {
-                        $sub_order_id = "Bloom".Auth::user()->id.$count.time();
+                        $sub_order_id = "goodness".Auth::user()->id.$count.time();
                         $reg1 = new OrderItem;
                         $reg1->order_id = $reg->order_id;
                         $reg1->sub_order_id = $sub_order_id;
@@ -622,13 +622,22 @@ class WebsiteController extends Controller
                         $reg1->prod_id = $r->product_id;
                         $reg1->attribute_id = $r->attribute_id;
                         $reg1->quantity =$r->quantity;
-                        $price=Product::where('product_attributes.id',$r->attribute_id)->leftjoin('product_attributes', 'products.products_id', '=', 'product_attributes.products_id')->pluck('price')->first();
+                        $price=Product::where('products.products_id',$r->product_id)->pluck('price')->first();
+                        $special_price=Product::where('products.products_id',$r->product_id)->pluck('special_price')->first();
+
                         // echo $r->quantity;
+                        if($special_price != null){
+                            $reg1->sub_total=$special_price;
+                            $total_amount+=$special_price*$r->quantity;
+                            $totaltype1Amount+=$special_price  * $r->quantity;
+                            $totaltype1Amount = $totaltype1Amount - $extra_discount_1;
+                        }
+                        else{
                             $reg1->sub_total=$price;
                             $total_amount+=$price*$r->quantity;
                             $totaltype1Amount+=$price  * $r->quantity;
                             $totaltype1Amount = $totaltype1Amount - $extra_discount_1;
-                        
+                        }
                         $reg1->order_status = 1;
                         $prod_name[] = $reg1->prod_name;
                         $sub[] = $reg1->sub_total;                    
@@ -645,17 +654,8 @@ class WebsiteController extends Controller
                 $date = Carbon::today()->format('Y-m-d');;
                 // dd($date); die;
                 // check user is subscribed user or not 
-                $discount_percent = DB::table('user_subcription')
-                                        ->join('plans', 'plans.id', '=', 'user_subcription.plan_id')                         
-                                        ->where('user_id','=', Auth::user()->id)
-                                        ->whereDate('user_subcription.plan_end', '>=', $date)
-                                        ->pluck('discount')
-                                        ->first();
-                if($discount_percent >0 ){
-                    $t_amount_with_shipping_final = $t_amount_with_shipping - ($t_amount_with_shipping * $discount_percent/ 100);
-                }else{
+                
                     $t_amount_with_shipping_final = $t_amount_with_shipping;
-                }
 
                 $total_amount_with_shipping = round($t_amount_with_shipping_final, 2);
 
@@ -668,9 +668,9 @@ class WebsiteController extends Controller
 
                 if($req->payment_mode=='1'){
 
-                    return redirect('confirm-order/'.$reg->order_id); 
+                    // return redirect('confirm-order/'.$reg->order_id); 
                 
-                    // return redirect('order-success/'.$reg->order_id);
+                    return redirect('order-success/'.$reg->order_id);
 
                 }
         }
@@ -681,25 +681,26 @@ class WebsiteController extends Controller
         $data['flag']=17;
         $data['booking'] = Order::where('order_id',$order_id)->first(); 
         $address_id = Order::where('order_id',$order_id)->pluck('address_id')->first();
-        $to_email = UserAddress::where('id',$address_id)->pluck('email')->first();  
+        // $to_email = UserAddress::where('id',$address_id)->pluck('email')->first();  
         // dd($to_email);
-                    $to_name = "demo";
-                    // dd($to_email);
-                    if($to_email != null){
+                    // $to_name = "demo";
+                    // // dd($to_email);
+                    // if($to_email != null){
 
-                        Mail::send('emails.user-order', ['order_detail' =>$data['booking']], function($message) use ($to_name, $to_email){
-                            $message->to($to_email, $to_name)
-                            ->subject('Order Placed');
-                            $message->from('info@1618033.in','Bloom');
-                        });
+                    //     Mail::send('emails.user-order', ['order_detail' =>$data['booking']], function($message) use ($to_name, $to_email){
+                    //         $message->to($to_email, $to_name)
+                    //         ->subject('Order Placed');
+                    //         $message->from('info@1618033.in','Bloom');
+                    //     });
     
-                    }
+                    // }
         return view('Website/Webviews/manage_website_pages',$data);
     }
 
     public function order_list(){
         $data['flag']=19;
-        $data['order'] = Order::where('user_id',Auth::user()->id)->orderBy('created_at', 'DESC')->get();   	
+        $data['order'] = Order::where('user_id',Auth::user()->id)->orderBy('created_at', 'DESC')->get();  
+        $data['user']= User::where('id',Auth::user()->id)->first(); 	
         // dd($data);
         return view('Website/Webviews/manage_website_pages',$data);
     }
@@ -707,6 +708,7 @@ class WebsiteController extends Controller
     public function userOrderDetail($id){
         $data['flag']=20;
         $data['order'] = OrderItem::where('order_id',$id)->orderBy('id','desc')->get();
+        $data['user']= User::where('id',Auth::user()->id)->first();
         return view('Website/Webviews/manage_website_pages',$data);
     }
 

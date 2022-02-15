@@ -17,28 +17,12 @@
     <div class="container">
         <div class="row">
                     <div class="col-md-3">
-                        @if($user->profile_pic)
-                        <div class="profile-pic text-center">
-                            <img src="{{asset($user->profile_pic)}}" alt="">
-                        </div>
-                        @else
-                        <div class="profile-pic text-center">
-                            <img src="{{asset('images/users/avatar-2.jpg')}}" alt="">
-                        </div>
-                        @endif
-
-                        <h4 class="text-center mt-3">{{$user->name}}</h4>
-                        <ul>
-                            <li> <a href="{{url('My-Profile')}}" class="a-class"> My Profile</a>  </li>
-                            <li> <a href="{{url('My-Address')}}" class="a-class"> My Address</a>  </li>
-                            <li> <a href="#" class="a-class"> My Order</a>  </li>
-                        </ul>    
+                        @include('Website.Components.profile_sidebar')  
                     </div> 
                     <div class="col-md-9">
-                        <div class="card p-5">
+                        <div class="card p-5 mp-1">
                                 <form class="address-form" action="{{url('user-profile-submit')}}" method="post" name="add_profile" enctype="multipart/form-data">
                                     @csrf   
-
                                     <div class="form-group">
                                         <label for="name"> Name : </label>
                                         <input class="form-control" type="text" id="name" name="name" placeholder="Enter Your Name" value="{{$user->name}}" required>

@@ -24,6 +24,12 @@ html {
 .font-11{
     font-size: 11px!important;
 }
+.font-12{
+    font-size: 12px!important;
+}
+.font-13{
+    font-size: 13px!important;
+}
 .nav-logo {
     margin-top: -40px;
     width: 120px;
@@ -514,6 +520,26 @@ footer{
         height: 120px;
     }
 
+    .profile-ul {    list-style-type: none;}
+    .profile-ul li {
+        background-color: dodgerblue;
+       background-position: 0px 5px;   /* X-pos Y-pos (from top-left) */
+        background-repeat: no-repeat;
+        padding : 10px 20px;  
+        margin: 10px;
+        /* color: #fff; */
+    }
+
+    .profile-ul li::before{
+        content: "\00BB";
+        font-size: 20px;
+        color: #fff;margin-right: 10px;
+    }
+
+    .profile-ul li a {
+        color: #fff;
+    }
+
  
 /*****************
 *********   Media Query start *******
@@ -596,6 +622,15 @@ footer{
         margin-left: auto;
         margin-right: auto;
         top: 50%;
+    }
+
+    .profile-ul li {
+        background-color: dodgerblue;
+       background-position: 0px 5px;   /* X-pos Y-pos (from top-left) */
+        background-repeat: no-repeat;
+        padding : 8px 12px;  
+        margin: 8px;
+        /* color: #fff; */
     }
   }
 

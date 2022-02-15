@@ -62,7 +62,7 @@
                                     <td class="align-middle">
                                         <div class="quantity buttons_added">
                                             <input type="button" value="-" class="minus"><input type="number"
-                                                step="1" min="1" max="" name="quantity" value="1" title="Qty"
+                                                step="1" min="1" max="" name="quantity" value="{{$item->quantity}}" title="Qty"
                                                 class="input-text qty text" size="4" pattern="" inputmode=""><input
                                                 type="button" value="+" class="plus">
                                         </div>
@@ -145,7 +145,7 @@
                             </div>
                             <div class="col-12 text-center">
                                 @auth
-                                    <button type="button" class="btn btn-dark">Proceed to Checkout</button>
+                                   <a href="{{url('/checkout')}}"> <button type="button" class="btn btn-dark">Proceed to Checkout</button></a>
                                 @endauth
                             </div>
                         </div>

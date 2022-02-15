@@ -13,6 +13,8 @@
 
 <section class="container-fluid  page-middle-section ">
     <div class="container">
+        <form action="{{url('checkout-submit')}}" method="POST">
+            @csrf
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
@@ -31,7 +33,8 @@
                                     <li>{{ $item->city }},</li>
                                     <li>{{ $item->state }},{{ $item->country }},{{ $item->pin_code }}</li>
                                     <li><a href="{{ url('user-address-edit') }}/{{ $item->id }}">Edit</a>&nbsp; <a
-                                            href="{{ url('user-address-delete') }}/{{ $item->id }}">Delete</a></li>
+                                            href="{{ url('user-address-delete') }}/{{ $item->id }}">Delete</a>
+                                    </li>
 
                                 </ul>
                             </div>
@@ -46,59 +49,90 @@
                             <div class="col-12">
                                 <h4>Your Order</h4>
                             </div>
-                            <div class="col-6 mp-0 mm-0 m-center">
-                                <p>Pure Nature Honey</p>
-                            </div>
-                            <div class="col-6 mp-0 mm-0 m-center">
-                                <p><i class="fas fa-rupee-sign"></i> 139.00</p>
-                            </div>
-                            <div class="col-6 mp-0 mm-0 m-center">
-                                <p>Your Product Name</p>
-                            </div>
 
-                            <div class="col-6 mp-0 mm-0 m-center">
-                                <p><i class="fas fa-rupee-sign"></i> 450.00</p>
-                            </div>
-                            <div class="col-6 mp-0 mm-0 m-center">
-                                <p>Your Product Name</p>
-                            </div>
-                            
-                            <div class="col-6 mp-0 mm-0 m-center">
-                                <p><i class="fas fa-rupee-sign"></i> 450.00</p>
-                            </div>
+                            @php
+                                $total = 0;
+                                $total_amount = 0;
+                                $shipping_charges = 0;
+                                $copoun_amount = 0;
+                            @endphp
+                            @foreach ($result as $item)
+                                @php
+                                    if ($item->special_price != null) {
+                                        $total += $item->special_price * $item->quantity;
+                                    } else {
+                                        $total += $item->price * $item->quantity;
+                                    }
+                                    // $total += $item->price * $item->quantity;
+
+                                    if ($item->special_price != null) {
+                                        $subtotal = $item->special_price * $item->quantity;
+                                    } else {
+                                        $subtotal = $item->price * $item->quantity;
+                                    }
+
+                                    // $subtotal = $item->price * $item->quantity;
+                                    
+                                    $shipping = DB::table('shipping_charges')
+                                        ->where('min', '<=', $total)
+                                        ->where('max', '>=', $total)
+                                        ->pluck('ship_charges')
+                                        ->first();
+                                    $final_total = $total + $shipping;
+                                @endphp
+
+
+
+
+
+                                <div class="col-7 mp-0 mm-0 m-center">
+                                    <p class="font-13">{{ $item->product_name }} <span
+                                            class="ml-2 btn btn-primary btn-sm font-13"> <i class='fas fa-times'></i>
+                                            {{ $item->quantity }}</span></p>
+                                </div>
+                                <div class="col-5 mp-0 mm-0 m-center">
+                                    <p><i class="fas fa-rupee-sign"></i> @if ($item->special_price != null) {{ $item->special_price * $item->quantity }} @else {{ $item->price * $item->quantity }} @endif </p>
+                                </div>
+                            @endforeach
+
                             <div class="col-12 border-top"></div>
 
-                            <div class="col-6 mp-0 mm-0 m-center">
+                            <div class="col-7 mp-0 mm-0 m-center">
                                 <p>Sub Total</p>
                             </div>
 
-                            <div class="col-6 mp-0 mm-0 m-center">
-                                <p><i class="fas fa-rupee-sign"></i> 450.00</p>
+                            <div class="col-5 mp-0 mm-0 m-center">
+                                <p><i class="fas fa-rupee-sign"></i> {{ $total }}</p>
                             </div>
 
-                            <div class="col-6 bb-1 mp-0 mm-0 m-center">
-                                <p>Discount</p>
+                            <div class="col-7 bb-1 mp-0 mm-0 m-center">
+                                <p>Shipping Chages</p>
                             </div>
 
-                            <div class="col-6 bb-1 mp-0 mm-0 m-center">
-                                <p><i class="fas fa-rupee-sign"></i> 00.00</p>
+                            <div class="col-5 bb-1 mp-0 mm-0 m-center">
+                                <p><i class="fas fa-rupee-sign"></i> {{ $shipping }}</p>
                             </div>
 
 
-                            <div class="col-6 mp-0 mm-0 m-center">
+                            <div class="col-7 mp-0 mm-0 m-center">
                                 <h5 class="font-weight-bold">Total</h5>
                             </div>
-                            <div class="col-6 mp-0 mm-0 m-center">
-                                <p class="font-weight-bold"><i class="fas fa-rupee-sign"></i> 450.00</p>
+                            <div class="col-5 mp-0 mm-0 m-center">
+                                <p class="font-weight-bold"><i class="fas fa-rupee-sign"></i> {{ $final_total }}</p>
                             </div>
+
+                            <input type="hidden" name="total_amount" value="{{$final_total}}">
+                            <input type="hidden" name="payment_mode" value="1">
+
                             <div class="col-12 mp-0 mm-0 m-center text-center">
-                                <button type="button" class="btn btn-dark">Place Order</button>
+                                <button type="submit" class="btn btn-dark">Place Order</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+       </form>
     </div>
 </section>
 

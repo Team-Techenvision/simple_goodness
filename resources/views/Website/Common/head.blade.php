@@ -33,9 +33,9 @@
                       <span class="font-11 font-weight-bold">
                         Customer Care 1800 108 4488
                       </span>
-                      <span><img class="svg-img" src="{{asset('images/svg/facebook.svg')}}" alt=""></span>
+                      <span> <a href="https://www.facebook.com/Simple-Goodness-Life-101266439160421" target="_blank"> <img class="svg-img" src="{{asset('images/svg/facebook.svg')}}" alt=""> </a> </span>
                       <span><img class="svg-img" src="{{asset('images/svg/twitter.svg')}}" alt=""></span>
-                      <span><img class="svg-img" src="{{asset('images/svg/instagram.svg')}}" alt=""></span>                
+                      <span> <a href="https://www.instagram.com/simplegoodnesslife/" target="_blank"> <img class="svg-img" src="{{asset('images/svg/instagram.svg')}}" alt=""></a></span>                
                   </div>
               </div>
           </div>
